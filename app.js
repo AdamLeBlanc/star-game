@@ -7,6 +7,8 @@ var platforms;
 var player;
 var cursors;
 var stars;
+var scoreText;
+var score = 0;
 
 function preload() {
   game.load.image("sky", "assets/sky.png");
@@ -57,6 +59,12 @@ function create() {
     star.body.gravity.y = 100;
     star.body.bounce.y = 0.7 + Math.random() * 0.2; // random bounce
   }
+
+  // setup the initial score box
+  scoreText = game.add.text(16, 16, "Score: 0", {
+    fontSize: "32px",
+    fill: "#000"
+  });
 }
 
 function update() {
@@ -82,4 +90,6 @@ function update() {
 
 function collectStar(player, star) {
   star.kill();
+  score += 10;
+  scoreText.text = "Score: " + score;
 }
