@@ -4,6 +4,8 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, "game", {
   update
 });
 var platforms;
+var player;
+
 function preload() {
   game.load.image("sky", "assets/sky.png");
   game.load.image("ground", "assets/platform.png");
@@ -32,6 +34,15 @@ function create() {
   // just reuse the same variable for the next ledge
   ledge = platforms.create(-150, 250, "ground");
   ledge.body.immovable = true;
+
+  player = game.add.sprite(32, game.world.height - 150, "dude");
+  game.physics.arcade.enable(player); // we have to enable physics
+  player.body.bounce.y = 0.2; // give our player a little bounce
+  player.body.gravity.y = 300; // make the player fall
+  player.body.collideWorldBounds = true; // stay within the world bounds
+
+  player.animations.add("left", [0, 1, 2, 3], 10, true); // see spritesheet for animation
+  player.animations.add("right", [5, 6, 7, 8], 10, true);
 }
 
 function update() {}
