@@ -6,6 +6,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, "game", {
 var platforms;
 var player;
 var cursors;
+var stars;
 
 function preload() {
   game.load.image("sky", "assets/sky.png");
